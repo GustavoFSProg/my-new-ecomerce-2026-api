@@ -1,39 +1,39 @@
 import { Router, Request, Response } from "express";
 // import UserController from "./Controllers/UserController";
 
-// import {
-//   showOne,
-//   get,
-//   create,
-//   destroy,
-//   update,
-//   createOneImageForProduct,
-// } from "../controllers/productsController";
-import { multerConfig } from "../src/config/uploader_old";
+import {
+  showOne,
+  get,
+  create,
+  // destroy,
+  // update,
+  createOneImageForProduct,
+} from "./Controllers/ProductsController";
+import { multerConfig } from "./config/uploader";
 import UserController from "./Controllers/UserController";
+import { getImagesForOnePrpductID } from "./Controllers/ImagesController";
 // import {
 //   createImages,
 //   getImages,
 //   getImagesForOnePrpductID,
 // } from "../controllers/imagesController";
 
-export const ProductRoutes = Router();
+const routes = Router();
 
-// ProductRoutes.get("/", (req: Request, res: Response) => {
-//   return res.status(200).json({ msg: `⚡ Server is running: 🎉` });
-// });
-// ProductRoutes.get("/products", get);
-// ProductRoutes.get("/get-one-product/:id", showOne);
-// ProductRoutes.post("/products", multerConfig, create);
-// ProductRoutes.put("/product/:id", update);
-// ProductRoutes.delete("/product/:id", destroy);
-// // ProductRoutes.post('/products', multerConfig, createOneImageForProduct)
+routes.get("/", (req: Request, res: Response) => {
+  return res.status(200).json({ msg: `⚡ Server is running: 🎉` });
+});
+routes.get("/get-products", get);
+routes.get("/get-one-product/:id", showOne);
+routes.post("/create-product", multerConfig, create);
+// routes.put("/update-product/:id", update);
+// routes.delete("/delete-product/:id", destroy);
+routes.post("/products", multerConfig, createOneImageForProduct);
 
-// ProductRoutes.get("/images", getImages);
+// images controller routes
+routes.get("/get-product-images/:id", getImagesForOnePrpductID);
 // ProductRoutes.get("/images/:id", getImagesForOnePrpductID);
 // ProductRoutes.post('/images', multerConfig, createImages)
-
-const routes = Router();
 
 routes.get("/", (req: Request, res: Response) => {
   return res.status(200).json({ Mensagem: "Api funcionando!" });

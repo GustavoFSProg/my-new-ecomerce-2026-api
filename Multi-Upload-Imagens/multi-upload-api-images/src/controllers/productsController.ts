@@ -71,6 +71,7 @@ export async function create(req: Request, res: Response) {
       data: {
         name: req.body.name,
         price: Number(req.body.price),
+        description: req.body.description,
         // image: 'https://res.cloudinary.com/my-owne/image/upload/v1702736622/udqvrd9dwrzt88too60y.jpg',
         image: 'https://res.cloudinary.com/my-owne/image/upload/v1702736622/udqvrd9dwrzt88too60y.jpg',
       },
