@@ -11,7 +11,10 @@ import {
 } from "./Controllers/ProductsController";
 import { multerConfig } from "./config/uploader";
 import UserController from "./Controllers/UserController";
-import { getImagesForOnePrpductID } from "./Controllers/ImagesController";
+import {
+  getImages,
+  getImagesForOnePrpductID,
+} from "./Controllers/ImagesController";
 // import {
 //   createImages,
 //   getImages,
@@ -32,7 +35,7 @@ routes.post("/products", multerConfig, createOneImageForProduct);
 
 // images controller routes
 routes.get("/get-product-images/:id", getImagesForOnePrpductID);
-// ProductRoutes.get("/images/:id", getImagesForOnePrpductID);
+routes.get("/images", getImages);
 // ProductRoutes.post('/images', multerConfig, createImages)
 
 routes.get("/", (req: Request, res: Response) => {

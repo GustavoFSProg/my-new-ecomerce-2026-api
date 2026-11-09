@@ -27,17 +27,44 @@ export async function getProductsImages(_req: Request, res: Response) {
   }
 }
 
-export async function showOne(req: Request, res: Response) {
+export async function getImagesForOnePrpductID(req: Request, res: Response) {
   try {
-    const produtos = await db.products.findFirst({
-      where: { id: req.params.id } as any,
+    const data = await db.images.findMany({
+      where: { idProduto: req.params.id } as any,
       select: {
-        name: true,
-        id: true,
+        images: true,
+
+        idProduto: true,
       },
     });
 
-    return res.status(200).json(produtos);
+    return res.status(201).json({ data });
+  } catch (error) {
+    return res.status(201).json({ error });
+  }
+}
+
+export async function showOne(req: Request, res: Response) {
+  try {
+    const produto = await db.products.findFirst({
+      where: { id: req.params.id } as any,
+    });
+
+    // const ProdutoID = req.params.id;
+
+    if (!produto) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    console.log(produto);
+
+    const data = await db.images.findMany({
+      where: { idProduto: req.params.id } as any,
+    });
+
+    console.log(data);
+
+    return res.status(200).json({ produto, data });
   } catch (error) {
     return res.status(200).json({ error });
   }

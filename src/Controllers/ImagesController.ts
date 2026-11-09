@@ -5,12 +5,12 @@ import { v2 } from "cloudinary";
 
 const db = new PrismaClient();
 
-// export function getImages(_req: Request, res: Response) {
-//   db.images
-//     .findMany()
-//     .then((products) => res.status(201).json({ products }))
-//     .catch((error) => res.status(400).json({ error }))
-// }
+export function getImages(_req: Request, res: Response) {
+  db.images
+    .findMany()
+    .then((products) => res.status(201).json({ products }))
+    .catch((error) => res.status(400).json({ error }));
+}
 
 export async function createImages(req: Request, res: Response) {
   try {
