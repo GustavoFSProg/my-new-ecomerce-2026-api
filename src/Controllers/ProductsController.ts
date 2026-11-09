@@ -58,13 +58,13 @@ export async function showOne(req: Request, res: Response) {
 
     console.log(produto);
 
-    const data = await db.images.findMany({
+    const imagens = await db.images.findMany({
       where: { idProduto: produto.id } as any,
     });
 
-    console.log(data);
+    console.log(imagens);
 
-    return res.status(200).json({ produto, data });
+    return res.status(200).json({ produto, imagens });
   } catch (error) {
     return res.status(200).json({ error });
   }
