@@ -59,7 +59,7 @@ export async function showOne(req: Request, res: Response) {
     console.log(produto);
 
     const data = await db.images.findMany({
-      where: { idProduto: req.params.id } as any,
+      where: { idProduto: produto.id } as any,
     });
 
     console.log(data);
